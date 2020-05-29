@@ -1,6 +1,13 @@
 import React from 'react';
 import './App.css';
 
+// rect router
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+} from "react-router-dom";
+
 // components
 import Multiplier from './components/Multiplier';
 import EvenClicks from './components/EvenClicks';
@@ -11,13 +18,23 @@ import MinimumLength from './components/MinimumLength';
 
 function App() {
   return (
-    <div className="text-center">
-      <Multiplier x={10} y={50} />
-      <EvenClicks />
-      <CountBy step={5} />
-      <HideMe>Blah blah blah</HideMe>
-      <MinimumLength length={30} />
-    </div>
+    <Router>
+      <div className="text-center mt-4">
+        <Switch>
+          <Route exact path="/multiplier/:x/:y" render={({ match }) => (
+            <Multiplier x={match.params.x} y={match.params.y} />
+          )} />
+          <Route exact path="/even-clicks" component={EvenClicks} />
+          <Route exact path="/count-by/:step" render={({ match }) => (
+            <CountBy step={match.params.step} />
+          )} />
+          <Route exact path="/hide-me" component={<HideMe>Blah blah blah</HideMe>} />
+          <Route exact path="/minimum/:length" render={({ match }) => (
+            <MinimumLength length={match.params.length} />
+          )} />
+        </Switch>
+      </div>
+    </Router>
   );
 }
 
