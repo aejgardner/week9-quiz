@@ -20,7 +20,7 @@ class EvenClicks extends Component {
     render() {
         const { clickCount } = this.state;
         return (
-            <p onClick={this.handleClick}>{clickCount % 2 === 0 ? "Even" : "Odd"}</p>
+            <p style={{ cursor: "pointer" }} onClick={this.handleClick}>{clickCount % 2 === 0 ? "Even" : "Odd"}</p>
         )
     }
 }

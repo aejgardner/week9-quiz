@@ -5,22 +5,23 @@ class CountBy extends Component {
         super(props);
 
         this.state = {
-            clickCount: 0
+            value: 0
         }
 
         this.handleClick = this.handleClick.bind(this);
     }
 
     handleClick() {
-        const { clickCount } = this.state
+        const { step } = this.props;
+        const { value } = this.state;
 
-        this.setState({ clickCount: clickCount + 1 })
+        this.setState({ value: value + step })
     }
 
     render() {
-        const { clickCount } = this.state;
+        const { value } = this.state;
         return (
-            <p onClick={this.handleClick}>{clickCount % 2 === 0 ? "Even" : "Odd"}</p>
+            <p style={{ cursor: "pointer" }} onClick={this.handleClick}>{value}</p>
         )
     }
 }
